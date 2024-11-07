@@ -1,29 +1,87 @@
-.logo {
-    width: 145px;
-    height: 92px;
-    gap: 0;
-    opacity: 0;
-}
-
-.image-logo {
-    width: 100%;
-    height: 100%;
-}
-
-.header-content {
+.navbar {
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    height: 100%;
+    background-color: transparent;
 }
 
-.user-info {
+.navbar-menu-items {
+    background-color: transparent;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.navbar-logo span {
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-user {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.username {
+.navbar-user span {
+    font-weight: bold;
     margin-left: 10px;
+}
+
+.navbar-register {
+    margin-left: 10px;
+}
+
+.navbar-menuIcon {
+    display: none;
+}
+
+.navbar-menu {
+    position: absolute;
+    top: 0;
+    right: -50%;
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    width: 50%;
+    transition: all 1s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.navbar-menu.active {
+    right: 0;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .navbar-left .navbar-menu-items {
+        display: none;
+    }
+
+    .navbar-menuIcon {
+        display: block;
+    }
 }

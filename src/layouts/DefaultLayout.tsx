@@ -7,19 +7,23 @@ const { Header, Footer, Content } = Layout
 
 const headerStyle: React.CSSProperties = {
     textAlign: 'center',
-    color: '#fff',
+    color: 'black',
     height: 64,
     paddingInline: 48,
     lineHeight: '64px',
-    backgroundColor: '#4096ff',
+    backgroundColor: 'transparent',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
 }
 
 const contentStyle: React.CSSProperties = {
     textAlign: 'center',
     minHeight: 120,
     lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#0958d9',
+    color: 'black',
 }
 
 const footerStyle: React.CSSProperties = {
@@ -30,6 +34,7 @@ const footerStyle: React.CSSProperties = {
 
 const layoutStyle = {
     overflow: 'hidden',
+    backgroundColor: 'transparent',
 }
 
 // @ts-ignore
@@ -40,9 +45,9 @@ const DefaultLayout = ({ children }) => {
                 <HeaderComponent />
             </Header>
             <Content style={contentStyle}>{ children }</Content>
-            <Footer style={footerStyle}>
-                <FooterComponent />
-            </Footer>
+            {/*<Footer style={footerStyle}>*/}
+            {/*    <FooterComponent />*/}
+            {/*</Footer>*/}
         </Layout>
     )
 }

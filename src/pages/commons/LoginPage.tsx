@@ -1,11 +1,15 @@
 import { Alert, Button, Card, Col, Form, Input, Row } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
-import { login } from '@/services/auth.ts'
+import { useDispatch } from 'react-redux'
 import { PATHS } from '@/router/path.ts'
-
+import './styles/login.css'
+import { loginAction } from '@/store/authAction.ts'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [passwordVisible, setPasswordVisible] = React.useState(false)
     const [submitLoading, setSubmitLoading] = React.useState(false)
     const [error, setError] = useState('')
@@ -13,7 +17,8 @@ const LoginPage = () => {
         setError('')
         setPasswordVisible(true)
         try {
-            await login(values)
+            await dispatch(loginAction(values))
+            navigate(PATHS.HOME)
         } catch (e: any) {
             console.error(e)
             setError(e.message)
@@ -26,15 +31,14 @@ const LoginPage = () => {
         <div
             style={{
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'space-evenly',
             }}
         >
             <Card
                 className="login-card"
                 style={{
                     width: '30vw',
-                    height: 'auto',
-                    marginTop: '50px',
+                    margin: '50px 0',
                 }}
             >
                 <img src="https://uet.vnu.edu.vn/wp-content/uploads/2017/02/logo-2.png" alt="logo-phenikaa"
@@ -111,6 +115,10 @@ const LoginPage = () => {
                     </Form.Item>
                 </Form>
             </Card>
+            <div className="img-container">
+                <img src="https://raw.githubusercontent.com/lenghia100703/intro-web-store/refs/heads/main/bg.png"
+                     alt="background" />
+            </div>
         </div>
     )
 }

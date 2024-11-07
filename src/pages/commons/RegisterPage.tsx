@@ -26,15 +26,18 @@ const RegisterPage = () => {
         <div
             style={{
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'space-evenly',
             }}
         >
+            <div className="img-container">
+                <img src="https://raw.githubusercontent.com/lenghia100703/intro-web-store/refs/heads/main/bg.png"
+                     alt="background" />
+            </div>
             <Card
                 className="login-card"
                 style={{
                     width: '30vw',
-                    height: 'auto',
-                    marginTop: '50px',
+                    margin: '50px 0',
                 }}
             >
                 <img src="https://uet.vnu.edu.vn/wp-content/uploads/2017/02/logo-2.png" alt="logo-phenikaa"
