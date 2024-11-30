@@ -1,30 +1,26 @@
-import type { GetProps } from 'antd'
-import { Col, Input, Row, Typography } from 'antd'
+import SearchBar from '@/components/searchBar/SearchBar.tsx'
+import './styles/homePage.scss'
 
-import './styles/home.css'
-
-type SearchProps = GetProps<typeof Input.Search>;
-
-const HomePage = () => {
-    const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value)
+function HomePage() {
     return (
-        <>
-            <Row align="middle">
-                <Col span={12}>
-                    <Typography.Title level={1}>
-                        Tìm trọ cho sinh viên
-                    </Typography.Title>
-                    <Input.Search size="large" style={{ width: '60%' }} placeholder="Nhập từ khóa tìm kiếm"
-                                  onSearch={onSearch} enterButton />
-                </Col>
-                <Col span={12}>
-                    <img
-                        className="img-container"
-                        src="https://raw.githubusercontent.com/lenghia100703/intro-web-store/refs/heads/main/bg.png"
-                        alt="background" />
-                </Col>
-            </Row>
-        </>
+        <div className="homePage">
+            <div className="textContainer">
+                <div className="wrapper">
+                    <h1 className="title">Tìm thuê trọ cho SV</h1>
+                    <p>
+                        Discover the location of your current residence and explore the potential destinations that hold
+                        promise for your future endeavors. This powerful tool enables you to visualize both your present
+                        living situation and the exciting possibilities that lie ahead, helping you make informed
+                        decisions about your life's trajectory. (AI)
+                    </p>
+                    <SearchBar />
+
+                </div>
+            </div>
+            <div className="imgContainer">
+                <img src="/bg.png" alt="" />
+            </div>
+        </div>
     )
 }
 
