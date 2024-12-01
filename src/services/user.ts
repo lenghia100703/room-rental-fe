@@ -8,3 +8,11 @@ export const getCurrentUser = async () => {
 export const getUserById = async (id: string) => {
     return (await http.get(USER_API.USER_BY_ID(id))).data
 }
+
+export const getMarkedRooms = async (params: any) => {
+    return (await http.get(USER_API.GET_MARKED_ROOM(params))).data
+}
+
+export const checkRoom = async (id: any) => {
+    return (await http.get(USER_API.CHECK_ROOM(id))).data
+}

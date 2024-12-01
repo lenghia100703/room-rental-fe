@@ -1,12 +1,15 @@
 import axios from 'axios'
+import { getLocalStorage } from '@/helpers/localStorageHelper.ts'
+import { LOCAL_STORAGE_KEYS } from '@/constants/localStorageKey.ts'
 
 const http = axios.create({
     withCredentials: true,
     // @ts-ignore
     baseURL: import.meta.env.VITE_APP_ROOT_API,
     transformRequest: [
-        // @ts-ignore
         function(data: any, headers: any) {
+            const accessToken = getLocalStorage(LOCAL_STORAGE_KEYS.AUTHENTICATION_TOKEN)
+            headers['Authorization'] = `Bearer ${accessToken}`
             return JSON.stringify(data)
         },
     ],

@@ -21,4 +21,8 @@ export const room = {
     deleteRoom: async (id: any) => {
         return (await http.delete(ROOM_API.DELETE_ROOM(id))).data
     },
+
+    markRoom: async (id: any) => {
+        return (await http.post(ROOM_API.MARK_ROOM(id))).data
+    }
 }

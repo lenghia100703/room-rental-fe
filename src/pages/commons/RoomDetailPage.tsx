@@ -6,9 +6,11 @@ import { room } from '@/services/room.ts'
 import { useParams } from 'react-router-dom'
 import { numberWithComas } from '@/helpers/numberWithComas.ts'
 import { getUserById } from '@/services/user.ts'
+import { checkRoom } from '../../services/user.ts'
 
 function RoomDetailPage() {
     const { id } = useParams()
+    const [isMarked, setIsMarked] = useState(false)
     const [currentRoom, setRoom] = useState(null)
     const [owner, setOwner] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -24,6 +26,16 @@ function RoomDetailPage() {
             console.error('Error fetching room:', error)
         } finally {
             setLoading(false)
+        }
+    }
+
+    const checkRoomAction = async (roomId: string | undefined) => {
+        try {
+            const response = await checkRoom(roomId)
+            console.log(response)
+            setIsMarked(response.data.isMarked)
+        } catch (error) {
+            console.error('Error marking room:', error)
         }
     }
 
@@ -43,8 +55,20 @@ function RoomDetailPage() {
         }
     }
 
+    const markRoomAction = async (roomId: any) => {
+        try {
+            const response = await room.markRoom(roomId)
+            setIsMarked(!isMarked)
+            alert(response.message)
+        } catch (error) {
+            console.error('Error marking room:', error)
+            alert('Có lỗi xảy ra khi đánh dấu phòng!')
+        }
+    }
+
     useEffect(() => {
         fetchRoomById()
+        checkRoomAction(id)
     }, [id])
 
     useEffect(() => {
@@ -90,7 +114,7 @@ function RoomDetailPage() {
                     <div className="listVertical">
                         <div>{currentRoom?.description}</div>
                     </div>
-                    <p className="title">Sizes</p>
+                    <p className="title">Kích cỡ</p>
                     <div className="sizes">
                         <div className="size">
                             <img src="/size.png" alt="" />
@@ -105,7 +129,7 @@ function RoomDetailPage() {
                             <span>{currentRoom?.bathroom} tắm</span>
                         </div>
                     </div>
-                    <p className="title">Nearby Places</p>
+                    <p className="title">Địa điểm gần đó</p>
                     <div className="listHorizontal">
                         <div className="feature">
                             <img src="/school.png" alt="" />
@@ -136,11 +160,11 @@ function RoomDetailPage() {
                     <div className="buttons">
                         <button>
                             <img src="/chat.png" alt="" />
-                            Send a Message
+                            Nhắn tin
                         </button>
-                        <button>
-                            <img src="/save.png" alt="" />
-                            Save the Place
+                        <button onClick={() => markRoomAction(currentRoom?._id)}>
+                            <img src={isMarked ? '/saved.png' : '/save.png'} alt="save" />
+                            {isMarked ? 'Bỏ lưu' : 'Lưu phòng trọ'}
                         </button>
                     </div>
                 </div>

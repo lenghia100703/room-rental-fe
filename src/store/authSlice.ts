@@ -35,9 +35,8 @@ const authSlice = createSlice({
             })
             .addCase(getCurrentUserAction.rejected, (state, action) => {
                 // @ts-ignore
-                state.isAuthenticated = false
-                state.user = null
-                removeLocalStorage(LOCAL_STORAGE_KEYS.INFO)
+                // state.isAuthenticated = false
+                // state.user = null
             })
     },
 })

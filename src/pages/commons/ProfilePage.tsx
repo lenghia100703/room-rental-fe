@@ -1,5 +1,3 @@
-import Chat from '@/components/chat/Chat'
-import List from '@/components/list/List'
 import './styles/profilePage.scss'
 import { useSelector } from 'react-redux'
 
@@ -15,19 +13,27 @@ function ProfilePage() {
                     </div>
                     <div className="info">
                         <span>
-              Tên người dùng: <b>{user?.username}</b>
-            </span>
+                            Tên người dùng: <b>{user?.username}</b>
+                        </span>
                         <span>
-              E-mail: <b>{user?.email}</b>
-            </span>
+                            E-mail: <b>{user?.email}</b>
+                        </span>
                         <span>
                             Vai trò: <b>{user?.role}</b>
                         </span>
                     </div>
-                    <div className="title">
-                        <h1>Danh sách</h1>
-                        <button>Thêm mới</button>
-                    </div>
+                    {
+                        user?.role === 'user' ? (
+                            <div className="title">
+                                <h1>Danh sách trọ đã lưu</h1>
+                            </div>
+                        ) : (
+                            <div className="title">
+                                <h1>Danh sách</h1>
+                                <button>Thêm mới</button>
+                            </div>
+                        )
+                    }
                     {/*<List />*/}
                     <div className="title">
                         <h1></h1>
