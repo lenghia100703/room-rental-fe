@@ -3,19 +3,66 @@ import { register } from '@/services/auth.ts'
 import { Link } from 'react-router-dom'
 import './styles/register.scss'
 
-
 const RegisterPage = () => {
-    const [passwordVisible, setPasswordVisible] = React.useState(false)
-    const [submitLoading, setSubmitLoading] = React.useState(false)
+    const [passwordVisible, setPasswordVisible] = useState(false)
+    const [submitLoading, setSubmitLoading] = useState(false)
     const [error, setError] = useState('')
-    const onFinish = async (values: any) => {
+    const [formValues, setFormValues] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    })
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        })
+    }
+
+    const resetForm = () => {
+        setFormValues({
+            username: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+        })
+    }
+
+    const validateEmail = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(email)
+    }
+
+    const onFinish = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         setError('')
-        setPasswordVisible(true)
+
+        if (!validateEmail(formValues.email)) {
+            setError('Email không hợp lệ.')
+            return
+        }
+
+        if (formValues.password !== formValues.confirmPassword) {
+            setError('Mật khẩu và xác nhận mật khẩu không khớp.')
+            return
+        }
+
+        setSubmitLoading(true)
+
         try {
-            await register(values)
+            await register({
+                username: formValues.username,
+                email: formValues.email,
+                password: formValues.password,
+            })
+            alert('Đăng ký thành công!')
+            resetForm()
         } catch (e: any) {
             console.error(e)
-            setError(e.message)
+            setError(e.message || 'Đã xảy ra lỗi.')
         } finally {
             setSubmitLoading(false)
         }
@@ -24,18 +71,49 @@ const RegisterPage = () => {
     return (
         <div className="register">
             <div className="formContainer">
-                <form>
-                    <h1>Đăng kí</h1>
-                    <input name="username" type="text" placeholder="Nhập tên người dùng" />
-                    <input name="email" type="text" placeholder="Nhập email" />
-                    <input name="password" type="password" placeholder="Nhập mật khẩu" />
-                    <input name="password" type="password" placeholder="Nhập xác nhận mật khẩu" />
-                    <button>Register</button>
+                <form onSubmit={onFinish}>
+                    <h1>Đăng ký</h1>
+                    {error && <div className="error">{error}</div>}
+                    <input
+                        name="username"
+                        type="text"
+                        placeholder="Nhập tên người dùng"
+                        value={formValues.username}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <input
+                        name="email"
+                        type="text"
+                        placeholder="Nhập email"
+                        value={formValues.email}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <input
+                        name="password"
+                        type={passwordVisible ? 'text' : 'password'}
+                        placeholder="Nhập mật khẩu"
+                        value={formValues.password}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <input
+                        name="confirmPassword"
+                        type="password"
+                        placeholder="Nhập xác nhận mật khẩu"
+                        value={formValues.confirmPassword}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <button type="submit" disabled={submitLoading}>
+                        {submitLoading ? 'Đang xử lý...' : 'Đăng kí'}
+                    </button>
                     <Link to="/login">Bạn đã có tài khoản?</Link>
                 </form>
             </div>
             <div className="imgContainer">
-                <img src="/bg.png" alt="" />
+                <img src="/bg.png" alt="Background" />
             </div>
         </div>
     )

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import './navbar.scss'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Navbar() {
     const [open, setOpen] = useState(false)
-
-    const user = false
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+    const user = useSelector((state) => state.auth.user)
     return (
         <nav>
             <div className="left">
@@ -14,20 +15,18 @@ function Navbar() {
                     <span>Nhóm 4</span>
                 </a>
                 <a href="/">Trang chủ</a>
-                <a href="/list-room">Bản đồ</a>
-                <a href="/">Thông tin</a>
-                <a href="/">SĐT</a>
+                <a href="/list-room">Danh sách phòng</a>
             </div>
             <div className="right">
-                {user ? (
+                {isAuthenticated ? (
                     <div className="user">
                         <img
-                            src="/images.jfif"
+                            src={user.avatar}
                             alt=""
                         />
-                        <span>John Doe</span>
+                        <span>{ user.username }</span>
                         <Link to="/profile" className="profile">
-                            <div className="notification">3</div>
+                            {/*<div className="notification">3</div>*/}
                             <span>Cá nhân</span>
                         </Link>
                     </div>

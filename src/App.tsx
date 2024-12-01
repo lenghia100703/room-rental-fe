@@ -6,6 +6,7 @@ import LoginPage from './pages/commons/LoginPage.tsx'
 import RegisterPage from './pages/commons/RegisterPage.tsx'
 import ListRoomPage from './pages/commons/ListRoomPage.tsx'
 import RoomDetailPage from './pages/commons/RoomDetailPage.tsx'
+import ProfilePage from './pages/commons/ProfilePage.tsx'
 
 function App() {
     const router = createBrowserRouter([
@@ -25,10 +26,10 @@ function App() {
                     path:"/room/:id",
                     element:<RoomDetailPage/>
                 },
-                // {
-                //     path:"/profile",
-                //     element:<ProfilePage/>
-                // },
+                {
+                    path:"/profile",
+                    element:<ProfilePage/>
+                },
                 {
                     path: '/login',
                     element: <LoginPage />,

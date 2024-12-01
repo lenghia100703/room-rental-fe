@@ -4,3 +4,7 @@ import http from '@/services/http.ts'
 export const getCurrentUser = async () => {
     return (await http.get(USER_API.GET_CURRENT_USER)).data
 }
+
+export const getUserById = async (id: string) => {
+    return (await http.get(USER_API.USER_BY_ID(id))).data
+}

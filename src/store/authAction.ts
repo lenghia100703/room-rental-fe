@@ -14,6 +14,7 @@ export const loginAction = createAsyncThunk(
 export const getCurrentUserAction = createAsyncThunk(
     USER_API.GET_CURRENT_USER,
     async (credentials, { rejectWithValue }) => {
-        return getCurrentUser()
+        const res = await getCurrentUser()
+        return res.data
     },
 )
