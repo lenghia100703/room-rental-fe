@@ -13,5 +13,18 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        .address {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #888;
+        }
+
+        img {
+            width: 16px;
+            height: 16px;
+        }
     }
 }
