@@ -2,6 +2,7 @@ import { room } from '@/services/room.ts'
 import { useEffect, useState } from 'react'
 import './styles/manageRoom.scss'
 import EditRoomModal from '@/components/modals/EditRoomModal.tsx'
+import { numberWithComas } from '../../helpers/numberWithComas.ts'
 
 function ManageRoomsPage() {
     const [rooms, setRooms] = useState([])
@@ -73,23 +74,23 @@ function ManageRoomsPage() {
                 <table>
                     <thead>
                     <tr>
-                        <th>STT</th>
-                        <th>Tiêu đề</th>
-                        <th>Giá (VND)</th>
-                        <th>Địa chỉ</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
+                        <th style={{ width: 40, textAlign: 'center' }}>STT</th>
+                        <th style={{ textAlign: 'center' }}>Tiêu đề</th>
+                        <th style={{ width: 120, textAlign: 'center' }}>Giá (VND)</th>
+                        <th style={{ textAlign: 'center' }}>Địa chỉ</th>
+                        <th style={{ width: 120, textAlign: 'center' }}>Trạng thái</th>
+                        <th style={{ width: 120, textAlign: 'center' }}>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
                     {rooms?.map((item: any, index: number) => (
                         <tr key={item.id}>
-                            <td>{index + 1}</td>
+                            <td style={{textAlign: 'center'}}>{index + 1}</td>
                             <td>{item.title}</td>
-                            <td>{item.price.toLocaleString()}</td>
+                            <td style={{ textAlign: 'center' }}>{numberWithComas(item.price, ',')}</td>
                             <td>{item.address.join(', ')}</td>
-                            <td>{item.status === 'available' ? 'Có sẵn' : 'Đã thuê'}</td>
-                            <td style={{ width: 120 }}>
+                            <td style={{ textAlign: 'center' }}>{item.status === 'available' ? 'Có sẵn' : 'Đã thuê'}</td>
+                            <td style={{ textAlign: 'center' }}>
                                 <button onClick={() => handleEdit(item)} className="btn-edit">
                                     Sửa
                                 </button>
