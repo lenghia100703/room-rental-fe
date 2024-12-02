@@ -27,36 +27,19 @@ const  Filter:React.FC<FilterProps> = ({ onSave }) => {
         <div className="filter">
             <div className="top" style={{display: 'block'}}>
                 <div className="item">
-                    <label htmlFor="city">Location</label>
+                    <label htmlFor="city">Thành phố</label>
                     <input
                         type="text"
                         id="city"
-                        name="city"
-                        placeholder="City Location"
+                        value={formData.city}
+                        onChange={(e) => handleChange('city', e.target.value)}
+                        placeholder="Nhập thành phố"
                     />
                 </div>
             </div>
             <div className="bottom" style={{alignItems: 'end'}}>
                 <div className="item">
-                    <label htmlFor="type">Type</label>
-                    <select name="type" id="type">
-                        <option value="">any</option>
-                        <option value="buy">Buy</option>
-                        <option value="rent">Rent</option>
-                    </select>
-                </div>
-                <div className="item">
-                    <label htmlFor="property">Property</label>
-                    <select name="property" id="property">
-                        <option value="">any</option>
-                        <option value="apartment">Apartment</option>
-                        <option value="house">House</option>
-                        <option value="condo">Condo</option>
-                        <option value="land">Land</option>
-                    </select>
-                </div>
-                <div className="item">
-                    <label htmlFor="minPrice">Min Price</label>
+                    <label htmlFor="minPrice">Giá phòng (từ)</label>
                     <input
                         type="number"
                         id="minPrice"
@@ -65,12 +48,12 @@ const  Filter:React.FC<FilterProps> = ({ onSave }) => {
                     />
                 </div>
                 <div className="item">
-                    <label htmlFor="maxPrice">Max Price</label>
+                    <label htmlFor="maxPrice">Giá phòng (đến)</label>
                     <input
                         type="text"
                         id="maxPrice"
-                        name="maxPrice"
-                        placeholder="any"
+                        value={formData.priceTo}
+                        onChange={(e) => handleChange('priceTo', e.target.value)}
                     />
                 </div>
                 <div className="item">
@@ -82,7 +65,16 @@ const  Filter:React.FC<FilterProps> = ({ onSave }) => {
                         onChange={(e) => handleChange('bedroom', e.target.value)}
                     />
                 </div>
-                <button>
+                <div className="item">
+                    <label htmlFor="bedroom">Số phòng tắm</label>
+                    <input
+                        type="text"
+                        id="bedroom"
+                        value={formData.bathroom}
+                        onChange={(e) => handleChange('bathroom', e.target.value)}
+                    />
+                </div>
+                <button type="submit" onClick={handleSubmit} style={{height: 38}}>
                     <img src="/search.png" alt="" />
                 </button>
             </div>
