@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { numberWithComas } from '@/helpers/numberWithComas.ts'
 import { getUserById } from '@/services/user.ts'
 import { checkRoom } from '../../services/user.ts'
+import { convertDateTime } from '../../helpers/convertDateTime.ts'
 
 function RoomDetailPage() {
     const { id } = useParams()
@@ -82,7 +83,7 @@ function RoomDetailPage() {
     }
 
     if (!currentRoom) {
-        return <div>Không tìm thấy dữ liệu của phòng</div>
+        return <div>Không tìm thấy phòng!</div>
     }
 
     return (
@@ -96,13 +97,13 @@ function RoomDetailPage() {
                                 <h1>{currentRoom?.title}</h1>
                                 <div className="address">
                                     <img src="/pin.png" alt="" />
-                                    <span>{currentRoom?.address}</span>
+                                    <span>{currentRoom?.address.join(', ') + ', ' + currentRoom?.city}</span>
+                                </div>
+                                <div className="address">
+                                    <span>Ngày đăng tải: {convertDateTime(currentRoom?.createdAt)}</span>
                                 </div>
                                 <div className="price">{numberWithComas(currentRoom?.price, ',')} VND/tháng</div>
-                            </div>
-                            <div className="user">
-                                <img src={owner?.avatar} alt="" />
-                                <span>{owner?.username}</span>
+                                <div className="price">{currentRoom?.status === 'available' ? 'Còn phòng!' : 'Đã thuê!'}</div>
                             </div>
                         </div>
                     </div>
@@ -113,6 +114,14 @@ function RoomDetailPage() {
                     <p className="title">Thông tin chung</p>
                     <div className="listVertical">
                         <div>{currentRoom?.description}</div>
+                    </div>
+                    <p className="title">Tình trạng</p>
+                    <div className="listVertical">
+                        <div>{currentRoom?.status === 'available' ? 'Còn phòng' : 'Đã thuê'}</div>
+                    </div>
+                    <p className="title">Chủ trọ</p>
+                    <div className="listVertical">
+                        <div>{owner?.username}</div>
                     </div>
                     <p className="title">Kích cỡ</p>
                     <div className="sizes">
