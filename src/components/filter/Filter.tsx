@@ -25,7 +25,7 @@ const  Filter:React.FC<FilterProps> = ({ onSave }) => {
     }
     return (
         <div className="filter">
-            <div className="top">
+            <div className="top" style={{display: 'block'}}>
                 <div className="item">
                     <label htmlFor="city">Thành phố</label>
                     <input
