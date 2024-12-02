@@ -7,19 +7,21 @@ import './styles/listRoom.scss'
 
 function ListRoomPage() {
     const [rooms, setRooms] = useState([])
+    const [currentParams, setCurrentParams] = useState({})
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
-        fetchRooms(page)
+        fetchRooms(page, currentParams)
     }
 
-    const fetchRooms = async (page) => {
+    const fetchRooms = async (page: any, params: any) => {
         try {
             const response = await room.getListRoom({
                 page: page,
                 perPage: 10,
+                ...params
             })
             if (response?.data) {
                 setRooms(response.data)
@@ -30,17 +32,24 @@ function ListRoomPage() {
         }
     }
     useEffect(() => {
-        fetchRooms(currentPage)
-    }, [])
+        fetchRooms(currentPage, currentParams)
+    }, [currentPage, currentParams])
 
     return (
         <div className="listPage">
             <div className="listContainer">
                 <div className="wrapper">
-                    <Filter />
-                    {rooms?.map((item: any) => (
+                    <Filter onSave={(params: any) => {
+                        setCurrentParams(params)
+                        fetchRooms(currentPage, params).then(r => console.log(r))
+                    }} />
+                    {rooms.length > 0 ? (rooms?.map((item: any) => (
                         <Card key={item.id} item={item} />
-                    ))}
+                    ))) : (
+                        <div>
+                            Không tìm thấy phòng nào!
+                        </div>
+                    )}
                     <div className="pagination">
                         {Array.from({ length: totalPages }, (_, index) => (
                             <button

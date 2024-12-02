@@ -1,21 +1,30 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './card.scss'
 import { numberWithComas } from '@/helpers/numberWithComas.ts'
 import { useEffect, useState } from 'react'
 import { room } from '@/services/room.ts'
 import { checkRoom } from '../../services/user.ts'
+import { PATHS } from '../../router/path.ts'
 
 // @ts-ignore
 function Card({ item }) {
     const [isMarked, setIsMarked] = useState<boolean | null>(null)
+    const navigate = useNavigate()
     const checkRoomAction = async (roomId: string) => {
         try {
             const response = await checkRoom(roomId)
             console.log(response)
-            setIsMarked(response.data.isMarked)
-            console.log(isMarked)
-        } catch (error) {
+            if (response.status === 200) {
+                setIsMarked(response.data.isMarked)
+            }
+            if (response.status === 401) {
+                setIsMarked(false)
+            }
+        } catch (error: any) {
             console.error('Error marking room:', error)
+            if (error.response.status === 401) {
+                setIsMarked(false)
+            }
         }
     }
 
@@ -24,9 +33,14 @@ function Card({ item }) {
             const response = await room.markRoom(roomId)
             setIsMarked(!isMarked)
             alert(response.message)
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error marking room:', error)
-            alert('Có lỗi xảy ra khi đánh dấu phòng!')
+            if (error.response.status === 401) {
+                alert('Bạn cần đăng nhập để có thể đánh dấu phòng!')
+                navigate(PATHS.LOGIN)
+            } else if (error.response.status === 500) {
+                alert('Có lỗi xảy ra khi đánh dấu phòng!')
+            }
         }
     }
 
