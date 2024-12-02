@@ -6,7 +6,18 @@ import { room } from '@/services/room'
 import './styles/listRoom.scss'
 
 function ListRoomPage() {
-    const [rooms, setRooms] = useState([])
+    const [rooms, setRooms] = useState([
+        {
+            latitude: 21.0285,
+            longitude: 105.8542,
+            images: [],
+            address: [],
+            title: "",
+            price: 0,
+            bedroom: 0,
+            bathroom: 0
+        }
+    ])
     const [currentParams, setCurrentParams] = useState({})
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)

@@ -121,7 +121,8 @@ function RoomDetailPage() {
                     </div>
                     <p className="title">Chủ trọ</p>
                     <div className="listVertical">
-                        <div>{owner?.username}</div>
+                        <div>{owner?.username} - {owner?.phone}</div>
+                        
                     </div>
                     <p className="title">Kích cỡ</p>
                     <div className="sizes">
@@ -163,7 +164,7 @@ function RoomDetailPage() {
                         </div>
                     </div>
                     <p className="title">Vị trí</p>
-                    <div className="mapContainer">
+                    <div className="mapContainer"> 
                         <Map items={[currentRoom]} />
                     </div>
                     <div className="buttons">
