@@ -47,8 +47,6 @@ function Card({ item }) {
     useEffect(() => {
         checkRoomAction(item._id)
     }, [item._id])
-
-    if (isMarked === null) return null
     return (
         <div className="card">
             <Link to={`/room/${item._id}`} className="imageContainer">
