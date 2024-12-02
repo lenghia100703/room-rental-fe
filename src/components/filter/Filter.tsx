@@ -8,12 +8,21 @@ function Filter() {
             {/*</h1>*/}
             <div className="top">
                 <div className="item">
-                    <label htmlFor="city">Location</label>
+                    <label htmlFor="city">Quận</label>
+                    <input
+                        type="text"
+                        id="district"
+                        name="district"
+                        placeholder="Quận"
+                    />
+                </div>
+                <div className="item">
+                    <label htmlFor="minPrice">Thành phố</label>
                     <input
                         type="text"
                         id="city"
                         name="city"
-                        placeholder="City Location"
+                        placeholder="Thành phố"
                     />
                 </div>
             </div>
@@ -27,14 +36,13 @@ function Filter() {
                     </select>
                 </div>
                 <div className="item">
-                    <label htmlFor="property">Property</label>
-                    <select name="property" id="property">
-                        <option value="">any</option>
-                        <option value="apartment">Apartment</option>
-                        <option value="house">House</option>
-                        <option value="condo">Condo</option>
-                        <option value="land">Land</option>
-                    </select>
+                    <label htmlFor="minPrice">Min Price</label>
+                    <input
+                        type="number"
+                        id="minPrice"
+                        name="minPrice"
+                        placeholder="any"
+                    />
                 </div>
                 <div className="item">
                     <label htmlFor="minPrice">Min Price</label>
@@ -46,20 +54,20 @@ function Filter() {
                     />
                 </div>
                 <div className="item">
-                    <label htmlFor="maxPrice">Max Price</label>
-                    <input
-                        type="text"
-                        id="maxPrice"
-                        name="maxPrice"
-                        placeholder="any"
-                    />
-                </div>
-                <div className="item">
                     <label htmlFor="bedroom">Bedroom</label>
                     <input
                         type="text"
                         id="bedroom"
                         name="bedroom"
+                        placeholder="any"
+                    />
+                </div>
+                <div className="item">
+                    <label htmlFor="bathroom">Bathroom</label>
+                    <input
+                        type="text"
+                        id="bathroom"
+                        name="bathroom"
                         placeholder="any"
                     />
                 </div>
