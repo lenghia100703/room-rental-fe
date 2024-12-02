@@ -16,3 +16,7 @@ export const getMarkedRooms = async (params: any) => {
 export const checkRoom = async (id: any) => {
     return (await http.get(USER_API.CHECK_ROOM(id))).data
 }
+
+export const updateUser = async (id: any, payload: any) => {
+    return (await http.put(USER_API.UPDATE_USER(id), payload)).data
+}

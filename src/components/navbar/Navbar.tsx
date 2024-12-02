@@ -1,12 +1,37 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './navbar.scss'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '@/store/authSlice.ts'
+import { PATHS } from '@/router/path.ts'
 
 function Navbar() {
     const [open, setOpen] = useState(false)
+    const [popupVisible, setPopupVisible] = useState(false)
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
     const user = useSelector((state) => state.auth.user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('.user')) {
+                setPopupVisible(false)
+            }
+        }
+
+        document.addEventListener('click', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside)
+        }
+    }, [])
+
+    const handleLogout = () => {
+        dispatch(logout())
+        navigate(PATHS.LOGIN)
+    }
+
     return (
         <nav>
             <div className="left">
@@ -19,16 +44,19 @@ function Navbar() {
             </div>
             <div className="right">
                 {isAuthenticated ? (
-                    <div className="user">
+                    <div className="user" onClick={() => setPopupVisible((prev) => !prev)}>
                         <img
                             src={user.avatar}
                             alt=""
                         />
-                        <span>{ user.username }</span>
-                        <Link to="/profile" className="profile">
-                            {/*<div className="notification">3</div>*/}
-                            <span>Cá nhân</span>
-                        </Link>
+                        <span>{user.username}</span>
+                        {popupVisible && (
+                            <div className="popup">
+                                <Link to="/profile" style={{margin: 0}}>Trang cá nhân</Link>
+                                {(user?.role === 'owner') && (<Link to="/manage-rooms" style={{margin: 0}}>Quản lý phòng trọ</Link>)}
+                                <button onClick={handleLogout}><strong>Đăng xuất</strong></button>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <>
@@ -44,14 +72,6 @@ function Navbar() {
                         alt=""
                         onClick={() => setOpen((prev) => !prev)}
                     />
-                </div>
-                <div className={open ? 'menu active' : 'menu'}>
-                    <a href="/">Home</a>
-                    <a href="/">About</a>
-                    <a href="/">Contact</a>
-                    <a href="/">Agents</a>
-                    <a href="/">Sign in</a>
-                    <a href="/">Sign up</a>
                 </div>
             </div>
         </nav>

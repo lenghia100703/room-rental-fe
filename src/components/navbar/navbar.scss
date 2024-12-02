@@ -68,7 +68,7 @@ nav {
             display: flex;
             align-items: center;
             font-weight: bold;
-
+            padding: 20px;
             img {
                 width: 40px;
                 height: 40px;
@@ -153,3 +153,51 @@ nav {
         }
     }
 }
+
+.user {
+    cursor: pointer;
+    position: relative;
+
+    img {
+        cursor: pointer;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .popup {
+        width: 175px;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 10px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+
+        a,
+        button {
+            padding: 8px 12px;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+            width: 100%;
+            text-decoration: none;
+            color: #333;
+
+            &:hover {
+                background-color: #f0f0f0;
+            }
+        }
+
+        button {
+            color: red;
+        }
+    }
+}
+

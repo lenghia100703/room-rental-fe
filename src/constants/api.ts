@@ -9,6 +9,7 @@ export const AUTH_API = {
 
 export const USER_API = {
     GET_CURRENT_USER: '/user/me',
+    UPDATE_USER: (userId: any) => `/user/${userId}`,
     USER_BY_ID: (userId: any) => `/user/${userId}`,
     GET_MARKED_ROOM: (params: any) => {
         const query = Object.keys(params)
@@ -39,4 +40,14 @@ export const ROOM_API = {
     DELETE_ROOM: (id: any) => `/room/${id}`,
     ROOM_BY_ID: (id: any) => `room/${id}`,
     MARK_ROOM: (id: any) => `/room/mark-room/${id}`,
+    GET_ROOM_BY_OWNER: (params: any) => {
+        const query = Object.keys(params)
+            .filter(key => params[key] !== undefined &&
+                params[key] !== null &&
+                params[key] !== 0 &&
+                params[key] !== '')
+            .map(key => `${key}=${params[key]}`)
+            .join('&')
+        return `/room/owner?${query}`
+    }
 }

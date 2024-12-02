@@ -7,6 +7,7 @@ import RegisterPage from './pages/commons/RegisterPage.tsx'
 import ListRoomPage from './pages/commons/ListRoomPage.tsx'
 import RoomDetailPage from './pages/commons/RoomDetailPage.tsx'
 import ProfilePage from './pages/commons/ProfilePage.tsx'
+import ManageRoomsPage from './pages/commons/ManageRoomsPage.tsx'
 
 function App() {
     const router = createBrowserRouter([
@@ -23,12 +24,16 @@ function App() {
                     element: <ListRoomPage />,
                 },
                 {
-                    path:"/room/:id",
-                    element:<RoomDetailPage/>
+                    path: '/manage-rooms',
+                    element: <ManageRoomsPage />
                 },
                 {
-                    path:"/profile",
-                    element:<ProfilePage/>
+                    path: '/room/:id',
+                    element: <RoomDetailPage />,
+                },
+                {
+                    path: '/profile',
+                    element: <ProfilePage />,
                 },
                 {
                     path: '/login',

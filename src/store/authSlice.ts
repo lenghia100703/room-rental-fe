@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 import { putLocalStorage, removeLocalStorage } from '@/helpers/localStorageHelper.ts'
 import { LOCAL_STORAGE_KEYS } from '@/constants/localStorageKey.ts'
-import { loginAction, getCurrentUserAction } from './authAction.ts'
-import { getLocalStorage } from '../helpers/localStorageHelper.ts'
+import { getCurrentUserAction, loginAction } from './authAction.ts'
+import { getLocalStorage } from '@/helpers/localStorageHelper.ts'
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
         isAuthenticated: getLocalStorage(LOCAL_STORAGE_KEYS.IS_LOGIN) || false,
-        user: JSON.parse(getLocalStorage(LOCAL_STORAGE_KEYS.INFO)) || null
+        user: JSON.parse(getLocalStorage(LOCAL_STORAGE_KEYS.INFO)) || null,
     },
     reducers: {
         logout: (state) => {
@@ -41,5 +41,5 @@ const authSlice = createSlice({
     },
 })
 
-export const { logout } = authSlice.actions;
-export default authSlice.reducer;
+export const { logout } = authSlice.actions
+export default authSlice.reducer

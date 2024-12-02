@@ -46,7 +46,7 @@ function Card({ item }) {
                 </h2>
                 <p className="address">
                     <img src="/pin.png" alt="" />
-                    <span>{item.address}</span>
+                    <span>{item.address.join(', ')}</span>
                 </p>
                 <p className="price">{numberWithComas(item.price, ',')} VND</p>
                 <div className="bottom">

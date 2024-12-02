@@ -7,21 +7,30 @@ import './styles/listRoom.scss'
 
 function ListRoomPage() {
     const [rooms, setRooms] = useState([])
-    const fetchRooms = async () => {
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page)
+        fetchRooms(page)
+    }
+
+    const fetchRooms = async (page) => {
         try {
             const response = await room.getListRoom({
-                page: 1,
+                page: page,
                 perPage: 10,
             })
             if (response?.data) {
                 setRooms(response.data)
+                setTotalPages(response.totalPages)
             }
         } catch (error) {
             console.error('Error fetching rooms:', error)
         }
     }
     useEffect(() => {
-        fetchRooms()
+        fetchRooms(currentPage)
     }, [])
 
     return (
@@ -32,6 +41,17 @@ function ListRoomPage() {
                     {rooms?.map((item: any) => (
                         <Card key={item.id} item={item} />
                     ))}
+                    <div className="pagination">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index}
+                                className={index + 1 === currentPage ? 'active' : ''}
+                                onClick={() => handlePageChange(index + 1)}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className="mapContainer">

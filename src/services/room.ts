@@ -24,5 +24,9 @@ export const room = {
 
     markRoom: async (id: any) => {
         return (await http.post(ROOM_API.MARK_ROOM(id))).data
+    },
+
+    getRoomByOwner: async (params: any) => {
+        return (await http.get(ROOM_API.GET_ROOM_BY_OWNER(params))).data
     }
 }
