@@ -8,6 +8,7 @@ import ListRoomPage from './pages/commons/ListRoomPage.tsx'
 import RoomDetailPage from './pages/commons/RoomDetailPage.tsx'
 import ProfilePage from './pages/commons/ProfilePage.tsx'
 import ManageRoomsPage from './pages/commons/ManageRoomsPage.tsx'
+import AboutPage from './pages/commons/AboutPage.tsx'
 
 function App() {
     const router = createBrowserRouter([
@@ -42,6 +43,10 @@ function App() {
                 {
                     path: '/register',
                     element: <RegisterPage />,
+                },
+                {
+                    path: '/about',
+                    element: <AboutPage />,
                 },
             ],
         },

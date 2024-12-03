@@ -41,6 +41,7 @@ function Navbar() {
                 </a>
                 <a href="/">Trang chủ</a>
                 <a href="/list-room">Danh sách phòng</a>
+                <a href="/about">Thông tin</a>
             </div>
             <div className="right">
                 {isAuthenticated ? (
