@@ -10,6 +10,7 @@
     .wrapper {
       padding-right: 100px;
       display: flex;
+      flex-wrap: wrap;
       flex-direction: column;
       justify-content: center;
       gap: 50px;
@@ -80,4 +81,32 @@
       }
     }
   }
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  width: 650px;
+
+  .nameTag {
+    display: flex;
+    width: 130px;
+    flex-direction: column;
+    align-items:center;
+    justify-content: left;
+    background-color: blanchedalmond;
+    padding: 10px;
+    border-radius: 10px;
+
+    .imgC {
+      size: 50%;
+      padding: 10px;
+    }
+  }
+
+  .nameTag:hover {
+    width: 200px;
+  }
+
 }
