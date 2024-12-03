@@ -1,14 +1,10 @@
-import './styles/homePage.scss'
+import './styles/aboutPage.scss'
 
-function HomePage() {
+function AboutPage() {
     return (
         <div className="homePage">
             <div className="textContainer">
                 <div className="wrapper">
-                    <h1 className="title">Tìm thuê trọ cho SV</h1>
-                    <p>
-                        Một sản phẩm của nhóm 4 - Các hệ thống thương mại điện tử - 2425I_INT3506
-                    </p>
                     <h1>Thành viên</h1>
                     <div className="flex-container">
                         <div className="nameTag">
@@ -53,4 +49,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default AboutPage
