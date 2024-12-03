@@ -6,7 +6,6 @@
 
   .textContainer {
     display: flex;
-    justify-content: space-between;
 
     .wrapper {
       padding-right: 100px;
@@ -100,10 +99,10 @@
     background-color: blanchedalmond;
     padding: 10px;
     border-radius: 10px;
+    transition: 0.3s;
 
     .imgC {
       size: 20%;
-      padding: 10px;
     }
   }
 
