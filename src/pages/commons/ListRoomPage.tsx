@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react'
-import Filter from '../../components/filter/Filter'
-import Card from '../../components/card/Card'
-import Map from '../../components/map/Map'
+import Filter from '@/components/filter/Filter'
+import Card from '@/components/card/Card'
+import Map from '@/components/map/Map'
 import { room } from '@/services/room'
 import './styles/listRoom.scss'
+import { useSelector } from 'react-redux'
 
 function ListRoomPage() {
+    const query = useSelector((state: any) => state.query.query)
     const [rooms, setRooms] = useState([
         {
             latitude: 21.0285,
             longitude: 105.8542,
             images: [],
             address: [],
-            title: "",
+            title: '',
             price: 0,
             bedroom: 0,
-            bathroom: 0
-        }
+            bathroom: 0,
+        },
     ])
-    const [currentParams, setCurrentParams] = useState({})
+    const [currentParams, setCurrentParams] = useState(query || {})
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
 
@@ -32,7 +34,7 @@ function ListRoomPage() {
             const response = await room.getListRoom({
                 page: page,
                 perPage: 10,
-                ...params
+                ...params,
             })
             if (response?.data) {
                 setRooms(response.data)
@@ -50,7 +52,7 @@ function ListRoomPage() {
         <div className="listPage">
             <div className="listContainer">
                 <div className="wrapper">
-                    <Filter onSave={(params: any) => {
+                    <Filter query={query} onSave={(params: any) => {
                         setCurrentParams(params)
                         fetchRooms(currentPage, params).then(r => console.log(r))
                     }} />

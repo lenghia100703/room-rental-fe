@@ -11,7 +11,7 @@ function HomePage() {
                         Một sản phẩm của nhóm 4 - Các hệ thống thương mại điện tử - 2425I_INT3506
                     </p>
                     <SearchBar />
-                    
+
                 </div>
             </div>
             <div className="imgContainer">

@@ -1,6 +1,6 @@
 import { Empty, Typography } from 'antd'
 import { Link } from 'react-router-dom'
-import { PATHS } from '@/router/path.ts'
+import { PATHS } from '@/router/path'
 
 function NotFound() {
     return (

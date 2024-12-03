@@ -1,5 +1,5 @@
-import { USER_API } from '@/constants/api.ts'
-import http from '@/services/http.ts'
+import { USER_API } from '@/constants/api'
+import http from '@/services/http'
 
 export const getCurrentUser = async () => {
     return (await http.get(USER_API.GET_CURRENT_USER)).data

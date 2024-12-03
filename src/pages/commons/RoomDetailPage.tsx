@@ -2,12 +2,11 @@ import './styles/roomDetail.scss'
 import Slider from '@/components/slider/Slider'
 import Map from '@/components/map/Map'
 import { useEffect, useState } from 'react'
-import { room } from '@/services/room.ts'
+import { room } from '@/services/room'
 import { useParams } from 'react-router-dom'
-import { numberWithComas } from '@/helpers/numberWithComas.ts'
-import { getUserById } from '@/services/user.ts'
-import { checkRoom } from '../../services/user.ts'
-import { convertDateTime } from '../../helpers/convertDateTime.ts'
+import { numberWithComas } from '@/helpers/numberWithComas'
+import { checkRoom, getUserById } from '@/services/user'
+import { convertDateTime } from '@/helpers/convertDateTime'
 
 function RoomDetailPage() {
     const { id } = useParams()
@@ -33,7 +32,6 @@ function RoomDetailPage() {
     const checkRoomAction = async (roomId: string | undefined) => {
         try {
             const response = await checkRoom(roomId)
-            console.log(response)
             setIsMarked(response.data.isMarked)
         } catch (error) {
             console.error('Error marking room:', error)
@@ -44,10 +42,8 @@ function RoomDetailPage() {
         try {
             setLoading(true)
             const response = await getUserById(ownerId)
-            console.log(response)
             if (response?.data) {
                 setOwner(response.data)
-                console.log(owner)
             }
         } catch (error) {
             console.error('Error fetching owner:', error)
@@ -103,7 +99,8 @@ function RoomDetailPage() {
                                     <span>Ngày đăng tải: {convertDateTime(currentRoom?.createdAt)}</span>
                                 </div>
                                 <div className="price">{numberWithComas(currentRoom?.price, ',')} VND/tháng</div>
-                                <div className="price">{currentRoom?.status === 'available' ? 'Còn phòng!' : 'Đã thuê!'}</div>
+                                <div
+                                    className="price">{currentRoom?.status === 'available' ? 'Còn phòng!' : 'Đã thuê!'}</div>
                             </div>
                         </div>
                     </div>
@@ -122,7 +119,7 @@ function RoomDetailPage() {
                     <p className="title">Chủ trọ</p>
                     <div className="listVertical">
                         <div>{owner?.username} - {owner?.phone}</div>
-                        
+
                     </div>
                     <p className="title">Kích cỡ</p>
                     <div className="sizes">
@@ -164,7 +161,7 @@ function RoomDetailPage() {
                         </div>
                     </div>
                     <p className="title">Vị trí</p>
-                    <div className="mapContainer"> 
+                    <div className="mapContainer">
                         <Map items={[currentRoom]} />
                     </div>
                     <div className="buttons">

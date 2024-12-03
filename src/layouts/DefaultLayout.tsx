@@ -1,9 +1,8 @@
-import React from 'react'
-import Navbar from '../components/navbar/Navbar.tsx'
+import Navbar from '@/components/navbar/Navbar.tsx'
 import { Outlet } from 'react-router-dom'
 import './styles/layout.scss'
 
-// @ts-ignore
+
 function DefaultLayout() {
     return (
         <div className="layout">

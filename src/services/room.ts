@@ -28,5 +28,5 @@ export const room = {
 
     getRoomByOwner: async (params: any) => {
         return (await http.get(ROOM_API.GET_ROOM_BY_OWNER(params))).data
-    }
+    },
 }

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { login } from '@/services/auth.ts'
-import { AUTH_API, USER_API } from '@/constants/api.ts'
-import { getCurrentUser } from '@/services/user.ts'
+import { login } from '@/services/auth'
+import { AUTH_API, USER_API } from '@/constants/api'
+import { getCurrentUser } from '@/services/user'
 
 export const loginAction = createAsyncThunk(
     AUTH_API.LOGIN,

@@ -4,8 +4,8 @@ import { Avatar, Button, Dropdown, Menu } from 'antd'
 import { MenuOutlined, UserOutlined } from '@ant-design/icons'
 import './styles/header.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '@/store/authSlice.ts'
-import { getCurrentUserAction } from '@/store/authAction.ts'
+import { logout } from '@/store/authSlice'
+import { getCurrentUserAction } from '@/store/authAction'
 
 function HeaderComponent() {
     const { isAuthenticated, user } = useSelector((state: any) => state.auth)

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { getLocalStorage } from '@/helpers/localStorageHelper.ts'
-import { LOCAL_STORAGE_KEYS } from '@/constants/localStorageKey.ts'
+import { getLocalStorage } from '@/helpers/localStorageHelper'
+import { LOCAL_STORAGE_KEYS } from '@/constants/localStorageKey'
 
 const http = axios.create({
     withCredentials: true,

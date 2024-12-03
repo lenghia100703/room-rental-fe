@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import './navbar.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '@/store/authSlice.ts'
-import { PATHS } from '@/router/path.ts'
+import { logout } from '@/store/authSlice'
+import { PATHS } from '@/router/path'
 
 function Navbar() {
     const [open, setOpen] = useState(false)
@@ -19,9 +19,7 @@ function Navbar() {
                 setPopupVisible(false)
             }
         }
-
         document.addEventListener('click', handleClickOutside)
-
         return () => {
             document.removeEventListener('click', handleClickOutside)
         }
@@ -53,9 +51,10 @@ function Navbar() {
                         <span>{user.username}</span>
                         {popupVisible && (
                             <div className="popup">
-                                <Link to="/profile" style={{margin: 0}}>Trang cá nhân</Link>
-                                {(user?.role === 'owner') && (<Link to="/manage-rooms" style={{margin: 0}}>Quản lý phòng trọ</Link>)}
-                                <button onClick={handleLogout}><strong>Đăng xuất</strong></button>
+                                <Link to="/profile" style={{ margin: 0 }}>Trang cá nhân</Link>
+                                {(user?.role === 'owner') && (
+                                    <Link to="/manage-rooms" style={{ margin: 0 }}>Quản lý phòng trọ</Link>)}
+                                <button style={{fontSize: 16}} onClick={handleLogout}>Đăng xuất</button>
                             </div>
                         )}
                     </div>

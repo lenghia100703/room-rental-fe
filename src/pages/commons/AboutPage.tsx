@@ -5,41 +5,39 @@ function AboutPage() {
         <div className="homePage">
             <div className="textContainer">
                 <div className="wrapper">
-                    <h1>Thành viên</h1>
                     <div className="flex-container">
+                        <h2 style={{ marginBottom: 10 }}>Danh sách thành viên nhóm</h2>
                         <div className="nameTag">
                             <a className="imgC">
-                                <img src="/logo.png" alt="" width="70"/>
+                                <img src="/logo.png" alt="" width="70" />
                             </a>
-                            <p>Minh Hoà</p>
+                            <p>Nguyễn Khắc Nam Huy - 21020542</p>
                         </div>
                         <div className="nameTag">
                             <a className="imgC">
-                                <img src="/logo.png" alt="" width="70"/>
+                                <img src="/logo.png" alt="" width="70" />
                             </a>
-                            <p>Lê Minh Nghĩa</p>
+                            <p>Lê Vũ Minh Nghĩa - 21020366</p>
                         </div>
                         <div className="nameTag">
                             <a className="imgC">
-                                <img src="/logo.png" alt="" width="70"/>
+                                <img src="/logo.png" alt="" width="70" />
                             </a>
-                            <p>Nguyễn Khắc Nam Huy</p>
+                            <p>Nguyễn Quang Ninh - 22021166</p>
                         </div>
                         <div className="nameTag">
                             <a className="imgC">
-                                <img src="/logo.png" alt="" width="70"/>
+                                <img src="/logo.png" alt="" width="70" />
                             </a>
-                            <p>Nguyễn Đức Hùng</p>
+                            <p>Tiên Minh Hoà - 22021144</p>
                         </div>
                         <div className="nameTag">
                             <a className="imgC">
-                                <img src="/logo.png" alt="" width="70"/>
+                                <img src="/logo.png" alt="" width="70" />
                             </a>
-                            <p>Nguyễn Quang Ninh</p>
+                            <p>Nguyễn Đức Hùng - 22021109</p>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
             <div className="imgContainer">

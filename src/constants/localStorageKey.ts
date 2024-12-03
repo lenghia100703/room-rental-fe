@@ -3,5 +3,5 @@ export const LOCAL_STORAGE_KEYS = {
     INFO: 'INFO',
     LAYOUT_CONFIG: 'LAYOUT',
     IS_LOGIN: 'IS_LOGIN',
-    ROLE: 'ROLE'
+    ROLE: 'ROLE',
 }

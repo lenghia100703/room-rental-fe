@@ -1,10 +1,10 @@
 import './styles/profilePage.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMarkedRooms, updateUser } from '@/services/user.ts'
+import { getMarkedRooms, updateUser } from '@/services/user'
 import { useEffect, useState } from 'react'
 import Card from '@/components/card/Card.tsx'
 import EditUserModal from '@/components/modals/EditUserModal.tsx'
-import { getCurrentUserAction } from '@/store/authAction.ts'
+import { getCurrentUserAction } from '@/store/authAction'
 
 function ProfilePage() {
     const user = useSelector((state) => state.auth.user)
@@ -23,12 +23,12 @@ function ProfilePage() {
         setIsEditModalOpen(true)
     }
 
-    const updateUserAction = async (userData) => {
+    const updateUserAction = async (userData: any) => {
         try {
             await updateUser(user?._id, userData)
             await dispatch(getCurrentUserAction())
         } catch (e) {
-            console.log(e)
+            console.error(e)
         }
     }
 

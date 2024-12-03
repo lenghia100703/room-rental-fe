@@ -49,5 +49,5 @@ export const ROOM_API = {
             .map(key => `${key}=${params[key]}`)
             .join('&')
         return `/room/owner?${query}`
-    }
+    },
 }

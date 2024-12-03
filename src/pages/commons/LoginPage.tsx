@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { PATHS } from '@/router/path.ts'
+import { PATHS } from '@/router/path'
 import './styles/login.scss'
-import { loginAction } from '@/store/authAction.ts'
+import { getCurrentUserAction, loginAction } from '@/store/authAction'
 import { Link, useNavigate } from 'react-router-dom'
-import { getCurrentUserAction } from '@/store/authAction.ts'
 
 const LoginPage = () => {
     const dispatch = useDispatch()

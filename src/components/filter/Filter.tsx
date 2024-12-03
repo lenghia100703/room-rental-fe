@@ -2,16 +2,15 @@ import './filter.scss'
 import React, { useState } from 'react'
 
 interface FilterProps {
+    query: object;
     onSave: (params: any) => void;
 }
 
-const  Filter:React.FC<FilterProps> = ({ onSave }) => {
+const Filter: React.FC<FilterProps> = ({ query, onSave }) => {
     const [formData, setFormData] = useState({
-        city: '',
-        priceFrom: 0,
-        priceTo: 0,
-        bedroom: 0,
+        ...query,
         bathroom: 0,
+        bedroom: 0,
     })
     const handleChange = (field: string, value: any) => {
         setFormData((prev) => ({
@@ -25,7 +24,7 @@ const  Filter:React.FC<FilterProps> = ({ onSave }) => {
     }
     return (
         <div className="filter">
-            <div className="top" style={{display: 'block'}}>
+            <div className="top" style={{ display: 'block' }}>
                 <div className="item">
                     <label htmlFor="city">Thành phố</label>
                     <input
@@ -37,7 +36,7 @@ const  Filter:React.FC<FilterProps> = ({ onSave }) => {
                     />
                 </div>
             </div>
-            <div className="bottom" style={{alignItems: 'end'}}>
+            <div className="bottom" style={{ alignItems: 'end' }}>
                 <div className="item">
                     <label htmlFor="minPrice">Giá phòng (từ)</label>
                     <input
@@ -74,7 +73,7 @@ const  Filter:React.FC<FilterProps> = ({ onSave }) => {
                         onChange={(e) => handleChange('bathroom', e.target.value)}
                     />
                 </div>
-                <button type="submit" onClick={handleSubmit} style={{height: 38}}>
+                <button type="submit" onClick={handleSubmit} style={{ height: 38 }}>
                     <img src="/search.png" alt="" />
                 </button>
             </div>

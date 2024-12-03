@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './card.scss'
-import { numberWithComas } from '@/helpers/numberWithComas.ts'
+import { numberWithComas } from '@/helpers/numberWithComas'
 import { useEffect, useState } from 'react'
-import { room } from '@/services/room.ts'
-import { checkRoom } from '../../services/user.ts'
-import { PATHS } from '../../router/path.ts'
+import { room } from '@/services/room'
+import { checkRoom } from '@/services/user'
+import { PATHS } from '@/router/path'
 
 // @ts-ignore
 function Card({ item }) {
@@ -13,7 +13,6 @@ function Card({ item }) {
     const checkRoomAction = async (roomId: string) => {
         try {
             const response = await checkRoom(roomId)
-            console.log(response)
             if (response.status === 200) {
                 setIsMarked(response.data.isMarked)
             }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { register } from '@/services/auth.ts'
+import { register } from '@/services/auth'
 import { Link } from 'react-router-dom'
 import './styles/register.scss'
 

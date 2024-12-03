@@ -21,31 +21,31 @@ function App() {
                     element: <HomePage />,
                 },
                 {
-                    path: '/list-room',
+                    path: PATHS.LIST_ROOM,
                     element: <ListRoomPage />,
                 },
                 {
-                    path: '/manage-rooms',
-                    element: <ManageRoomsPage />
+                    path: PATHS.MANAGE_ROOM,
+                    element: <ManageRoomsPage />,
                 },
                 {
-                    path: '/room/:id',
+                    path: PATHS.ROOM_DETAIL,
                     element: <RoomDetailPage />,
                 },
                 {
-                    path: '/profile',
+                    path: PATHS.PROFILE,
                     element: <ProfilePage />,
                 },
                 {
-                    path: '/login',
+                    path: PATHS.LOGIN,
                     element: <LoginPage />,
                 },
                 {
-                    path: '/register',
+                    path: PATHS.REGISTER,
                     element: <RegisterPage />,
                 },
                 {
-                    path: '/about',
+                    path: PATHS.ABOUT,
                     element: <AboutPage />,
                 },
             ],

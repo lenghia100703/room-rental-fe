@@ -2,7 +2,7 @@ import { room } from '@/services/room.ts'
 import { useEffect, useState } from 'react'
 import './styles/manageRoom.scss'
 import EditRoomModal from '@/components/modals/EditRoomModal.tsx'
-import { numberWithComas } from '../../helpers/numberWithComas.ts'
+import { numberWithComas } from '@/helpers/numberWithComas'
 
 function ManageRoomsPage() {
     const [rooms, setRooms] = useState([])
@@ -85,7 +85,7 @@ function ManageRoomsPage() {
                     <tbody>
                     {rooms?.map((item: any, index: number) => (
                         <tr key={item.id}>
-                            <td style={{textAlign: 'center'}}>{index + 1}</td>
+                            <td style={{ textAlign: 'center' }}>{index + 1}</td>
                             <td>{item.title}</td>
                             <td style={{ textAlign: 'center' }}>{numberWithComas(item.price, ',')}</td>
                             <td>{item.address.join(', ')}</td>

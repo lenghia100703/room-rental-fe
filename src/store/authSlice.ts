@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { putLocalStorage, removeLocalStorage } from '@/helpers/localStorageHelper.ts'
-import { LOCAL_STORAGE_KEYS } from '@/constants/localStorageKey.ts'
-import { getCurrentUserAction, loginAction } from './authAction.ts'
-import { getLocalStorage } from '@/helpers/localStorageHelper.ts'
+import { getLocalStorage, putLocalStorage, removeLocalStorage } from '@/helpers/localStorageHelper'
+import { LOCAL_STORAGE_KEYS } from '@/constants/localStorageKey'
+import { getCurrentUserAction, loginAction } from './authAction'
 
 const authSlice = createSlice({
     name: 'auth',

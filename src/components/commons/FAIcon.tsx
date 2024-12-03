@@ -1,6 +1,5 @@
-import React, { CSSProperties, useMemo } from 'react';
-// @ts-ignore
-import { COLORS } from '@/constants/color.ts';
+import React, { CSSProperties, useMemo } from 'react'
+import { COLORS } from '@/constants/color'
 
 interface IconButtonProps {
     customStyle?: () => Record<string, string>;
@@ -14,41 +13,41 @@ interface IconButtonProps {
 }
 
 const FAIcon: React.FC<IconButtonProps> = ({
-                                                   customStyle = () => ({}),
-                                                   icon = 'fas fa-question',
-                                                   title = '',
-                                                   color = COLORS.BLACK,
-                                                   size = 'inherit',
-                                                   clickable = true,
-                                                   disabled = false,
-                                                   onClick,
-                                               }) => {
+                                               customStyle = () => ({}),
+                                               icon = 'fas fa-question',
+                                               title = '',
+                                               color = COLORS.BLACK,
+                                               size = 'inherit',
+                                               clickable = true,
+                                               disabled = false,
+                                               onClick,
+                                           }) => {
     const cursor = useMemo(
         () => (title && clickable && !disabled ? 'pointer' : 'unset'),
-        [title, clickable, disabled]
-    );
+        [title, clickable, disabled],
+    )
 
     const displayColor = useMemo(
         () => (disabled ? COLORS.DISABLED : `${color} !important`),
-        [disabled, color]
-    );
+        [disabled, color],
+    )
 
     const displayTitle = useMemo(
         () => (title && disabled ? 'Bạn không có quyền thực hiện chức năng này' : title),
-        [title, disabled]
-    );
+        [title, disabled],
+    )
 
-    const fontSize = useMemo(() => size, [size]);
+    const fontSize = useMemo(() => size, [size])
 
     const handleClick = () => {
-        if (!disabled && onClick) onClick();
-    };
+        if (!disabled && onClick) onClick()
+    }
 
     const customStyles = {
         color: displayColor,
         cursor,
         ...customStyle(),
-    } as CSSProperties;
+    } as CSSProperties
 
     return (
         <span
@@ -64,7 +63,7 @@ const FAIcon: React.FC<IconButtonProps> = ({
           <i className={icon} style={{ fontSize, color: displayColor }} />
       )}
     </span>
-    );
-};
+    )
+}
 
-export default FAIcon;
+export default FAIcon
