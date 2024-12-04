@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { register } from '@/services/auth'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './styles/register.scss'
+import { PATHS } from '@/router/path'
 
 const RegisterPage = () => {
     const [passwordVisible, setPasswordVisible] = useState(false)
@@ -13,6 +14,7 @@ const RegisterPage = () => {
         password: '',
         confirmPassword: '',
     })
+    const navigate = useNavigate()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -60,6 +62,7 @@ const RegisterPage = () => {
             })
             alert('Đăng ký thành công!')
             resetForm()
+            navigate(PATHS.LOGIN)
         } catch (e: any) {
             console.error(e)
             setError(e.message || 'Đã xảy ra lỗi.')

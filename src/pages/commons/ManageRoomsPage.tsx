@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import './styles/manageRoom.scss'
 import EditRoomModal from '@/components/modals/EditRoomModal.tsx'
 import { numberWithComas } from '@/helpers/numberWithComas'
+import CreateRoomModal from '@/components/modals/CreateRoomModal.tsx'
 
 function ManageRoomsPage() {
     const [rooms, setRooms] = useState([])
@@ -11,6 +12,7 @@ function ManageRoomsPage() {
 
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
     const [selectedRoom, setSelectedRoom] = useState<any>(null)
 
     const fetchRoomByOwner = async (page: number) => {
@@ -41,6 +43,10 @@ function ManageRoomsPage() {
         setIsDeleteModalOpen(true)
     }
 
+    const handleCreate = () => {
+        setIsCreateModalOpen(true)
+    }
+
     const confirmDelete = async () => {
         try {
             await room.deleteRoom(selectedRoom._id)
@@ -61,6 +67,16 @@ function ManageRoomsPage() {
         }
     }
 
+    const confirmCreate = async (roomData: any) => {
+        try {
+            await room.createRoom(roomData)
+            await fetchRoomByOwner(currentPage)
+            setIsCreateModalOpen(false)
+        } catch (e) {
+            console.error('Error create room:', e)
+        }
+    }
+
     useEffect(() => {
         fetchRoomByOwner(currentPage)
     }, [])
@@ -69,6 +85,7 @@ function ManageRoomsPage() {
         <div style={{ padding: 10 }}>
             <div className="title">
                 <h1>Quản lý phòng</h1>
+                <button onClick={() => handleCreate()}>Đăng phòng trọ</button>
             </div>
             <div className="table-wrapper">
                 <table>
@@ -123,6 +140,17 @@ function ManageRoomsPage() {
                     }}
                 />
             )}
+
+            {
+                isCreateModalOpen && (
+                    <CreateRoomModal
+                        onClose={() => setIsCreateModalOpen(false)}
+                        onSave={(room: any) => {
+                            confirmCreate(room).then(r => console.log(r))
+                        }}
+                    />
+                )
+            }
 
             {isDeleteModalOpen && (
                 <div className="modal">
