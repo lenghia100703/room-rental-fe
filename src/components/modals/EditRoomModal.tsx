@@ -137,19 +137,19 @@ const EditRoomModal: React.FC<EditRoomModalProps> = ({ room, onClose, onSave }) 
                     </label>
                     <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10 }}>
                         <label>
-                            Kinh độ:
-                            <input
-                                type="number"
-                                value={formData.longitude}
-                                onChange={(e) => handleChange('longitude', Number(e.target.value))}
-                            />
-                        </label>
-                        <label>
                             Vĩ độ:
                             <input
                                 type="number"
                                 value={formData.latitude}
                                 onChange={(e) => handleChange('latitude', Number(e.target.value))}
+                            />
+                        </label>
+                        <label>
+                            Kinh độ:
+                            <input
+                                type="number"
+                                value={formData.longitude}
+                                onChange={(e) => handleChange('longitude', Number(e.target.value))}
                             />
                         </label>
                     </div>

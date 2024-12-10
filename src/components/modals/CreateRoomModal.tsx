@@ -158,17 +158,6 @@ const CreateRoomModal: React.FC<CreateRoomModalProps> = ({ onClose, onSave }) =>
                     </label>
                     <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10 }}>
                         <label>
-                            Kinh độ:
-                            <input
-                                placeholder="Nhập kinh độ"
-                                type="number"
-                                value={formData.longitude || ''}
-                                onChange={(e) =>
-                                    handleChange('longitude', e.target.value === '' ? '' : Number(e.target.value))
-                                }
-                            />
-                        </label>
-                        <label>
                             Vĩ độ:
                             <input
                                 placeholder="Nhập vĩ độ"
@@ -176,6 +165,17 @@ const CreateRoomModal: React.FC<CreateRoomModalProps> = ({ onClose, onSave }) =>
                                 value={formData.latitude || ''}
                                 onChange={(e) =>
                                     handleChange('latitude', e.target.value === '' ? '' : Number(e.target.value))
+                                }
+                            />
+                        </label>
+                        <label>
+                            Kinh độ:
+                            <input
+                                placeholder="Nhập kinh độ"
+                                type="number"
+                                value={formData.longitude || ''}
+                                onChange={(e) =>
+                                    handleChange('longitude', e.target.value === '' ? '' : Number(e.target.value))
                                 }
                             />
                         </label>
